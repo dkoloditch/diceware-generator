@@ -1,5 +1,4 @@
-(ns diceware-generator.core
-  (:gen-class))
+(ns diceware-generator.core (:gen-class))
 
 (defn -main []
   (defn get-word-list-from-file []
@@ -14,11 +13,15 @@
 
   (def word-list-vector (vec (get-word-list-from-file)))
 
-  (defn generate-random-number [] (first (take 1 (repeatedly #(rand-int (count word-list-vector))))))
+  (defn generate-random-number [] 
+    (first (take 1 (repeatedly #(rand-int (count word-list-vector)))))
+  )
 
   (defn get-numbers [n] (for [i (range n)] (generate-random-number)))
 
   (defn get-results [n sequence] (for [value sequence] (word-list-vector value)))
 
-  (println (apply str (get-results 5 (get-numbers 5))))
+  (println "How many words?")
+  (def user-input (Integer. (read-line)))
+  (println (apply str (get-results user-input (get-numbers user-input))))
 )
