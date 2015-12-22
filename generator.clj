@@ -1,5 +1,3 @@
-(require '[clojure.set :as set])
-
 (defn get-line-from-file [number]
   (with-open [wordlist (clojure.java.io/reader "wordlist.txt")] 
     (doall
@@ -17,8 +15,9 @@
   )
 )
 
-(defn generate-random-numbers [n]
-  (vec
-    (let [a-set (set (take n (repeatedly #(rand-int 666666))))] a-set)
-  )
+(defn generate-random-number [] 
+  (apply str (take 1 (repeatedly #(+ (rand-int 55556) 11111))))
 )
+
+(defn get-numbers [n] (for [i (range n)] (generate-random-number)))
+
