@@ -15,3 +15,5 @@
 (defn get-numbers [n] (for [i (range n)] (generate-random-number)))
 
 (defn get-results [n sequence] (for [value sequence] (word-list-vector value)))
+
+(apply str (get-results 5 (get-numbers 5)))
