@@ -1,23 +1,17 @@
-(defn get-line-from-file [number]
+(defn get-word-list-from-file []
   (with-open [wordlist (clojure.java.io/reader "wordlist.txt")] 
     (doall
-      (for [line (line-seq wordlist) :when (re-seq (re-pattern number) line)]
+      (for [line (line-seq wordlist)]
         (apply str line)
       )
     )
   )
 )
 
-(defn get-match [n]
-  (re-seq 
-    #"\b()[a-z]+|\d{1,4}$|([0-9]{1,4}(th|rd|st))$|[\!\@\#\$\%\^\&\*\(\)\-\_\=\+\;\:\?]{1,2}$" 
-    (apply str (get-line-from-file n))
-  )
-)
+(def word-list-vector (vec (get-word-list-from-file)))
 
-(defn generate-random-number [] 
-  (apply str (take 1 (repeatedly #(+ (rand-int 55556) 11111))))
-)
+(defn generate-random-number [] (first (take 1 (repeatedly #(rand-int (count word-list-vector))))))
 
 (defn get-numbers [n] (for [i (range n)] (generate-random-number)))
 
+(defn get-results [n sequence] (for [value sequence] (word-list-vector value)))
