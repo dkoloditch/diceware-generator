@@ -1,6 +1,7 @@
 (ns diceware-generator.core (:gen-class))
 
 (defn -main []
+
   (defn get-word-list-from-file []
     (with-open [wordlist (clojure.java.io/reader "wordlist.txt")] 
       (doall
@@ -21,7 +22,16 @@
 
   (defn get-results [n sequence] (for [value sequence] (word-list-vector value)))
 
-  (println "How many words?")
+  (println "----------------------------------------------")
+  (println "             Diceware Generator               ")
+  (println "----------------------------------------------")
+  (println "")
+  (println "How many words? A minimum of six is suggested.")
   (def user-input (Integer. (read-line)))
-  (println (apply str (get-results user-input (get-numbers user-input))))
+  (def results (get-results user-input (get-numbers user-input)))
+  (println "")
+  (println (clojure.string/join " " results))
+  (println (apply str results))
+  (println "")
+
 )
