@@ -18,12 +18,23 @@ the server, exposing any newly generated password to someone other than you.
 
 ### Is this program the preferred method?
 
-No. Using the original "pad and pen" method is the best way to go, given that 
+No. Using the original "pad and pen" method is the preferred option, given that 
 it's "truly" random and doesn't use an electronic method that could potentially
 expose passwords to a malicious party. By using this program, you benefit from
 convenience and lose a certain degree of security. However, if the pad and pen
 method deters you from using Diceware at all, then this program may be something
 of an improvement in your password security.
+
+### How do I know this program is secure?
+
+The code for this project [rests in single file](https://github.com/dkoloditch/diceware-generator/blob/master/src/diceware_generator/core.clj) and is intentionally kept as simple as possible so 
+any discerning party (you) can scan it for flaws.
+
+### How does it work?
+
+The code generates a random number which is then matched to a word/symbol in 
+the wordlist file. This technique is repeated for the requested number of words 
+and the final results are spit out.
 
 ### Prerequisites
 1. Install Java
